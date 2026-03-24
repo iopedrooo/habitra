@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HabitRa — Prévia do App</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #111827;
+        --muted: #94a3b8;
+        --text: #e2e8f0;
+        --accent: #22c55e;
+        --accent-2: #3b82f6;
+        --danger: #ef4444;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: linear-gradient(180deg, #020617, #0f172a);
+        color: var(--text);
+      }
+      .container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      h1 { margin-top: 0; font-size: 1.6rem; }
+      .subtitle { color: var(--muted); margin-bottom: 18px; }
+      .phone {
+        border: 1px solid #1f2937;
+        border-radius: 20px;
+        background: #020617;
+        overflow: hidden;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      button {
+        border: 1px solid #334155;
+        background: #0b1220;
+        color: var(--text);
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button.active {
+        background: #1d4ed8;
+        border-color: #1d4ed8;
+      }
+      .screen {
+        display: none;
+        padding: 18px;
+      }
+      .screen.active { display: block; }
+      .card {
+        background: var(--card);
+        border: 1px solid #1f2937;
+        border-radius: 14px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+      .row { display: flex; gap: 10px; flex-wrap: wrap; }
+      .pill {
+        border: 1px solid #334155;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: .85rem;
+      }
+      .ok { color: #86efac; border-color: #166534; }
+      .info { color: #93c5fd; border-color: #1e40af; }
+      .danger { color: #fca5a5; border-color: #7f1d1d; }
+      input, select {
+        width: 100%;
+        margin-top: 8px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #0b1220;
+        color: var(--text);
+        padding: 10px;
+      }
+      .grid2 { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .day {
+        border: 1px solid #334155;
+        border-radius: 8px;
+        min-height: 72px;
+        padding: 6px;
+        font-size: .82rem;
+      }
+      .dot { width: 8px; height: 8px; border-radius: 100%; display: inline-block; margin-right: 4px; }
+      .legend { font-size: .8rem; color: var(--muted); }
+      .footer { color: var(--muted); font-size: .85rem; margin-top: 14px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>HabitRa — Prévia navegável (MVP)</h1>
+      <div class="subtitle">Mock visual das telas que você pediu: idioma, login/cadastro, verificação, amigos, hábitos em grupo/privados e calendário.</div>
+
+      <div class="tabs" id="tabs"></div>
+
+      <div class="phone">
+        <section class="screen active" data-screen="Idioma">
+          <div class="card">
+            <h3>1) Escolha de idioma</h3>
+            <p>Primeira tela obrigatória na abertura do app.</p>
+            <select>
+              <option>Português (Brasil)</option>
+              <option>English</option>
+              <option>Español</option>
+            </select>
+            <span class="pill info">Preferência salva automaticamente</span>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="Cadastro/Login">
+          <div class="grid2">
+            <div class="card">
+              <h3>2) Login</h3>
+              <input placeholder="E-mail" />
+              <input placeholder="Senha" type="password" />
+              <button>Entrar</button>
+            </div>
+            <div class="card">
+              <h3>3) Criar conta</h3>
+              <input placeholder="E-mail" />
+              <input placeholder="Nome de usuário (único)" id="username" />
+              <div id="username-status" class="legend">Teste de disponibilidade: tente "ana" ou "joao".</div>
+              <input placeholder="Senha" type="password" />
+              <button>Criar conta</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="Verificação de e-mail">
+          <div class="card">
+            <h3>4) Verificação de e-mail</h3>
+            <p>Enviamos um código para <strong>usuario@email.com</strong>.</p>
+            <input placeholder="Digite o código de 6 dígitos" />
+            <div class="row">
+              <button>Verificar código</button>
+              <button>Reenviar código</button>
+            </div>
+            <div class="row" style="margin-top:8px">
+              <span class="pill ok">Conta verificada ✅</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="Amigos e Hábitos">
+          <div class="card">
+            <h3>5) Amigos e hábitos compartilhados</h3>
+            <div class="row">
+              <span class="pill info">@eu</span>
+              <span class="pill info">@amg_estudos</span>
+              <span class="pill info">@leo</span>
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="card">
+              <h4>Hábito em grupo: Estudar</h4>
+              <p>Hoje:</p>
+              <div class="row">
+                <span class="pill ok">Você: concluído</span>
+                <span class="pill ok">Amiga: concluído</span>
+              </div>
+            </div>
+            <div class="card">
+              <h4>Meta privada: Leitura</h4>
+              <p>Visível só para você.</p>
+              <span class="pill danger">Não aparece para amigos</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="Calendário">
+          <div class="card">
+            <h3>6) Calendário combinado</h3>
+            <p class="legend"><span class="dot" style="background:#22c55e"></span>Você 
+              <span class="dot" style="background:#3b82f6"></span>Amiga 
+              <span class="dot" style="background:#f59e0b"></span>Privado</p>
+            <div class="calendar">
+              <div class="day">1<br><span class="dot" style="background:#22c55e"></span><span class="dot" style="background:#3b82f6"></span></div>
+              <div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+              <div class="day">8<br><span class="dot" style="background:#f59e0b"></span></div>
+              <div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="footer">Abra este arquivo no navegador para navegar entre as telas da prévia.</div>
+    </div>
+
+    <script>
+      const tabs = document.getElementById('tabs');
+      const screens = Array.from(document.querySelectorAll('.screen'));
+
+      screens.forEach((screen, idx) => {
+        const name = screen.getAttribute('data-screen');
+        const btn = document.createElement('button');
+        btn.textContent = name;
+        if (idx === 0) btn.classList.add('active');
+        btn.onclick = () => {
+          screens.forEach(s => s.classList.remove('active'));
+          screen.classList.add('active');
+          Array.from(tabs.children).forEach(c => c.classList.remove('active'));
+          btn.classList.add('active');
+        };
+        tabs.appendChild(btn);
+      });
+
+      const existing = new Set(['ana', 'joao', 'maria']);
+      const input = document.getElementById('username');
+      const status = document.getElementById('username-status');
+
+      input.addEventListener('input', (e) => {
+        const value = e.target.value.trim().toLowerCase();
+        if (!value) {
+          status.textContent = 'Digite um username para validar disponibilidade.';
+          return;
+        }
+        if (existing.has(value)) {
+          status.textContent = `❌ @${value} já está em uso`;
+          status.style.color = '#fca5a5';
+        } else {
+          status.textContent = `✅ @${value} está disponível`;
+          status.style.color = '#86efac';
+        }
+      });
+    </script>
+  </body>
+</html>
